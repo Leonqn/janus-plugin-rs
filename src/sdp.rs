@@ -160,6 +160,7 @@ impl Sdp {
         let error_ptr = error_buffer.as_mut_ptr() as *mut _;
         unsafe {
             let result = ffi::sdp::janus_sdp_parse(offer.as_ptr(), error_ptr, error_buffer.capacity());
+            println!("Sdp err: {}", SdpParseError { buffer: error_buffer.clone() });
             Sdp::new(result).ok_or_else(|| {
                 error_buffer.set_len(libc::strlen(error_ptr));
                 SdpParseError { buffer: error_buffer }
