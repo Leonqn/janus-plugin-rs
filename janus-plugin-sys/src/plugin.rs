@@ -1,6 +1,6 @@
-use jansson_sys::json_t;
-use std::os::raw::{c_char, c_int, c_void, c_short};
 use glib_sys::gboolean;
+use jansson_sys::json_t;
+use std::os::raw::{c_char, c_int, c_short, c_ushort, c_void};
 
 #[repr(C)]
 #[derive(Debug)]
@@ -53,38 +53,38 @@ pub struct janus_plugin_result {
 #[repr(C)]
 #[derive(Debug)]
 pub struct janus_plugin_rtp_extensions {
-    pub audio_level : c_char,
-    pub audio_level_vad : c_char,
-    pub video_rotation : c_short,
-    pub video_back_camera : c_char,
-    pub video_flipped : c_char,
+    pub audio_level: c_char,
+    pub audio_level_vad: c_char,
+    pub video_rotation: c_short,
+    pub video_back_camera: c_char,
+    pub video_flipped: c_char,
 }
 
 #[repr(C)]
 #[derive(Debug)]
 pub struct janus_plugin_rtp {
-    pub video :  c_char,
-    pub buffer : *mut c_char,
-    pub length : c_short,
-    pub extensions : janus_plugin_rtp_extensions,
+    pub video: c_char,
+    pub buffer: *mut c_char,
+    pub length: c_ushort,
+    pub extensions: janus_plugin_rtp_extensions,
 }
 
 #[repr(C)]
 #[derive(Debug)]
 pub struct janus_plugin_rtcp {
-    pub video : c_char,
-    pub buffer : *mut c_char,
-    pub length : c_short,
+    pub video: c_char,
+    pub buffer: *mut c_char,
+    pub length: c_short,
 }
 
 #[repr(C)]
 #[derive(Debug)]
 pub struct janus_plugin_data {
-    pub label : *mut c_char,
-    pub protocol : *mut c_char,
-    pub binary : c_char,
-    pub buffer : *mut c_char,
-    pub length : c_short,
+    pub label: *mut c_char,
+    pub protocol: *mut c_char,
+    pub binary: c_char,
+    pub buffer: *mut c_char,
+    pub length: c_short,
 }
 
 #[repr(C)]
